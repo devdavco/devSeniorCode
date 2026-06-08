@@ -2,6 +2,8 @@ import util.Entrada;
 import boletin01.Ejercicio01; 
 import boletin01.Ejercicio02; 
 import boletin01.Ejercicio03; 
+import boletin01.Ejercicio04; 
+
 
 
 
@@ -12,6 +14,8 @@ public class App {
         System.out.println("1. Boletín 1 - Ejercicio 1");
         System.out.println("2. Boletín 1 - Ejercicio 2");
         System.out.println("3. Boletín 1 - Ejercicio 3");
+        System.out.println("4. Boletín 1 - Ejercicio 4");
+
 
 
         System.out.println("Ingrese el ejercicio a ejecutar: ");
@@ -27,6 +31,9 @@ public class App {
         }else if (opcion == 3) {
             System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 3 --");
             Ejercicio03.main(args);
+        }else if (opcion == 4) {
+            System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 3 --");
+            Ejercicio04.main(args);
         }
         else {
             System.out.println("Opción no válida");
