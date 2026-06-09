@@ -3,7 +3,9 @@ import boletin01.Ejercicio01;
 import boletin01.Ejercicio02; 
 import boletin01.Ejercicio03; 
 import boletin01.Ejercicio04; 
-import boletin01.Ejercicio05; 
+import boletin01.Ejercicio05;
+import boletin01.Ejercicio06;
+import boletin01.Ejercicio07; 
 
 
 
@@ -16,7 +18,9 @@ public class App {
         System.out.println("2. Boletín 1 - Ejercicio 2");
         System.out.println("3. Boletín 1 - Ejercicio 3");
         System.out.println("4. Boletín 1 - Ejercicio 4");
-        System.out.println("4. Boletín 1 - Ejercicio 5");
+        System.out.println("5. Boletín 1 - Ejercicio 5");
+        System.out.println("6. Boletín 1 - Ejercicio 6");
+        System.out.println("7. Boletín 1 - Ejercicio 7");
 
 
 
@@ -40,6 +44,12 @@ public class App {
         }else if (opcion == 5) {
             System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 5 --");
             Ejercicio05.main(args);
+        }else if (opcion == 6) {
+            System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 6 --");
+            Ejercicio06.main(args);
+        }else if (opcion == 7) {
+            System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 7 --");
+            Ejercicio07.main(args);
         }
         
         else {
