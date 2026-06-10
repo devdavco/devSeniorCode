@@ -1,6 +1,6 @@
 package boletin01;
 import util.Entrada;
-public class Ejericicio11 {
+public class Ejercicio11 {
     public static void main(String[] args) {
         //11. Pedir un número entre 0 y 9.999 y decir cuantas cifras tiene.
 
