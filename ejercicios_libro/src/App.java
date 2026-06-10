@@ -22,9 +22,6 @@ public class App {
         System.out.println("6. Boletín 1 - Ejercicio 6");
         System.out.println("7. Boletín 1 - Ejercicio 7");
 
-
-
-
         System.out.println("Ingrese el ejercicio a ejecutar: ");
         int opcion = Entrada.entero();
 
