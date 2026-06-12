@@ -10,6 +10,8 @@ import boletin01.Ejercicio08;
 import boletin01.Ejercicio09; 
 import boletin01.Ejercicio10; 
 import boletin01.Ejercicio11; 
+import boletin01.Ejercicio12; 
+
 
 
 
@@ -31,6 +33,7 @@ public class App {
         System.out.println("9. Boletín 1 - Ejercicio 9");
         System.out.println("10. Boletín 1 - Ejercicio 10");
         System.out.println("11. Boletín 1 - Ejercicio 11");
+        System.out.println("11. Boletín 1 - Ejercicio 12");
 
         System.out.println("Ingrese el ejercicio a ejecutar: ");
         int opcion = Entrada.entero();
@@ -69,6 +72,9 @@ public class App {
         }else if (opcion == 11) {
             System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 11 --");
             Ejercicio11.main(args);
+        }else if (opcion == 12){
+            System.out.println("\n-- Ejecutando Boletín 1, Ejercicio 12 --");
+            Ejercicio12.main(args);
         }
         
         else {
