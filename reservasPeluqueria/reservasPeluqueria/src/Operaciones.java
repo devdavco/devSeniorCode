@@ -2,20 +2,86 @@ import java.util.Scanner;
 
 public class Operaciones {
 
-    static boolean hayProducto = false;
 
     static final int MAX = 10;
+
+    static int cantReservas = 0;
     static String[] nombres = new String[MAX];
-    static int[] cantidades = new int[MAX];
-    static double[] precios = new double[MAX];
-    static int total = 0;
-
-
-    static String[] clientes = new String[MAX];
     static int[] horas = new int[MAX];
-    static String[][] servicios = new String[][] {{"1","Corte de Cabello","25000"},{"2","Tinte","60000"},{"3","Manicure","30000"}}; 
+    static int[] servicios = new int[MAX];
+   // static String[][] servicios = new String[][] {{"1","Corte de Cabello","25000"},{"2","Tinte","60000"},{"3","Manicure","30000"}}; 
 
 
+
+public static void agendar(Scanner sc){
+
+    System.out.println("Biendevido al Agendamiento");
+    String nombre = sc.nextLine();
+
+    if(cantReservas < MAX){
+        //Con Cupo
+
+    //  ========== NOMBRE ===========
+
+        // Pedir y validar nombre
+        System.out.println("Por favor ingresa nombre del Cliente:");
+        nombre = sc.nextLine();
+        boolean nombreValido = Validador.nombreValido(nombre) ;
+        System.out.println(nombreValido);
+
+        while(!nombreValido){
+
+            System.out.println("Nombre ingresado incorrecto, intenta de nuevo");
+            nombre = sc.nextLine();
+            nombreValido = Validador.nombreValido(nombre);  
+
+        }
+       // System.out.println("Bienvenido "+ nombre);
+
+    //  ========== HORA ===========
+
+        // Pedir y validar hora
+        System.out.println("Ingrese la hora deseada (8 - 17): ");
+
+        int hora = sc.nextInt();
+        boolean horaValida = Validador.horaValida(hora);
+
+        //System.out.println("Hora: "+horaValida);
+
+        while(!horaValida){
+            System.out.println("Hora inválida. Intente otra: ");
+            hora = sc.nextInt();
+            horaValida = Validador.horaValida(hora);
+            
+        }
+        
+        for (int i : horas) {
+            while( i == hora ){
+                System.out.println("Hora Ocupada, intente otra");
+                hora = sc.nextInt();
+                horaValida = Validador.horaValida(hora);
+            }
+        }
+
+        nombres[cantReservas] = nombre;
+        horas[cantReservas] = hora;
+        cantReservas ++;
+
+        for(int i = 0 ; i < cantReservas ; i++){
+
+            System.out.println("Nombre: " + nombres[i] + " | Hora: " +horas[i] );
+        }
+
+
+    }else{
+        //Sin Cupo
+
+        System.out.println("No hay cupos disponibles");
+        return;
+    }
+}
+
+/*
     public static void registrar(Scanner sc) {
 
         if (total == MAX) {
@@ -70,7 +136,7 @@ public class Operaciones {
         }
         System.out.println("Valor total del inventario: " + suma);
     }
-
+*/
 
     /*
     - Agendar
