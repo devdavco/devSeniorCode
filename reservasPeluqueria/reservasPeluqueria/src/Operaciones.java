@@ -154,6 +154,11 @@ public class Operaciones {
             System.out.println("Ingrese la reserva a eliminar: ");
             int reserva = sc.nextInt();
             sc.nextLine();
+
+            if(reserva <= cantReservas){
+
+
+            }
         }
     }
 
