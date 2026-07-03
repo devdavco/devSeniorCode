@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
-
 public class Operaciones {
 
-    static final int MAX = 10;
+    static final int MAX = 2;
 
     static int cantReservas = 0;
     static String[] nombres = new String[MAX];
@@ -14,10 +13,10 @@ public class Operaciones {
 
     public static void agendar(Scanner sc) {
 
-        System.out.println("Biendevido al Agendamiento");
-        String nombre = "" ;
-
         if (cantReservas < MAX) {
+            System.out.println("Bienvenido al Agendamiento");
+            String nombre = "";
+
             // Con Cupo
 
             // ========== NOMBRE ===========
@@ -49,7 +48,7 @@ public class Operaciones {
             // System.out.println("Hora: "+horaValida);
 
             while (!horaValida) {
-              //  System.out.println("Hora inválida (Fura de rango 8 - 17). Intente otra: ");
+                // System.out.println("Hora inválida (Fura de rango 8 - 17). Intente otra: ");
                 hora = sc.nextInt();
                 sc.nextLine();
 
@@ -65,7 +64,7 @@ public class Operaciones {
                     horaValida = Validador.horaValida(hora);
 
                     while (!horaValida) {
-                        //System.out.println("Hora inválida (Fura de rango 8 - 17). Intente otra: ");
+                        // System.out.println("Hora inválida (Fura de rango 8 - 17). Intente otra: ");
                         hora = sc.nextInt();
                         sc.nextLine();
 
@@ -75,99 +74,87 @@ public class Operaciones {
 
                     i = -1;
                 }
-                
+
             }
-            
-                        
+            // ========== SERVICIOS ===========
+
+            System.out.println("Ingrese el servicio a tomar: ");
+            System.out.println("""
+                    1. Corte de Cabello
+                    2. Tinte
+                    3. Manicure""");
+
+            int servicio = sc.nextInt();
+            sc.nextLine();
+
+            boolean servicioValidado = Validador.servicioValido(servicio);
+
+            while (!servicioValidado) {
+
+                System.out.println("Servicio incorrecto, elige nuevamente: ");
+                System.out.println("""
+                        1. Corte de Cabello
+                        2. Tinte
+                        3. Manicure""");
+                servicio = sc.nextInt();
+                sc.nextLine();
+                servicioValidado = Validador.servicioValido(servicio);
+
+            }
 
             nombres[cantReservas] = nombre;
-            
             horas[cantReservas] = hora;
-            
+            servicios[cantReservas] = servicio;
             cantReservas++;
-            
-            // imprimo reservas
-
-                     // imprimo reservas
-            for (int i = 0; i < cantReservas; i++) {
-
-                System.out.println("Nombre: " + nombres[i] + " | Hora: " + horas[i]);
-
-            }
-          
 
         } else {
             // Sin Cupo
-
+            System.out.println("------------------------");
             System.out.println("No hay cupos disponibles");
+            System.out.println("------------------------");
             return;
         }
     }
 
-    /*
-     * public static void registrar(Scanner sc) {
-     * 
-     * if (total == MAX) {
-     * System.out.println("Inventario lleno. No se pueden agregar mas productos.");
-     * return;
-     * }
-     * nombres[total] = Validador.leerTexto(sc, "Nombre del producto: ");
-     * cantidades[total] = Validador.leerEntero(sc, "Cantidad: ");
-     * precios[total] = Validador.leerDecimal(sc, "Precio unitario: ");
-     * total++;
-     * System.out.println("Producto registrado correctamente.");
-     * }
-     * 
-     * 
-     * public static void listar() {
-     * if (total == 0) {
-     * System.out.println("Aun no hay productos registrados.");
-     * return;
-     * }
-     * System.out.println("--- INVENTARIO ---");
-     * for (int i = 0; i < total; i++) {
-     * System.out.println((i + 1) + ". " + nombres[i]
-     * + " | cant: " + cantidades[i]
-     * + " | precio: " + precios[i]);
-     * }
-     * }
-     * 
-     * 
-     * public static void actualizarCantidad(Scanner sc) {
-     * if (total == 0) {
-     * System.out.println("Aun no hay productos registrados.");
-     * return;
-     * }
-     * listar();
-     * int pos = Validador.leerEntero(sc, "Numero del producto a actualizar: ");
-     * if (pos < 1 || pos > total) {
-     * System.out.println("Ese numero no existe en el inventario.");
-     * return;
-     * }
-     * cantidades[pos - 1] = Validador.leerEntero(sc, "Nueva cantidad: ");
-     * System.out.println("Cantidad actualizada.");
-     * }
-     * 
-     * public static void verValorTotal() {
-     * if (total == 0) {
-     * System.out.println("Aun no hay productos registrados.");
-     * return;
-     * }
-     * double suma = 0;
-     * for (int i = 0; i < total; i++) {
-     * suma = suma + (cantidades[i] * precios[i]);
-     * }
-     * System.out.println("Valor total del inventario: " + suma);
-     * }
-     */
+    public static void listar() {
+        // imprimo reservas
+        if (cantReservas == 0) {
+            System.out.println("-------------------");
+            System.out.println("Aún no hay reservas");
+            System.out.println("-------------------");
 
-    /*
-     * - Agendar
-     * - Listar
-     * - Cancelar
-     * - Calcular reporte del día.
-     */
+        } else {
+
+            for (int i = 0; i < cantReservas; i++) {
+                String servicio = "";
+                switch (servicios[i]) {
+                    case 1 -> servicio = "CORTE";
+                    case 2 -> servicio = "TINTE";
+                    case 3 -> servicio = "MANICURE";
+
+                }
+
+                System.out.println(
+                        i + 1 + ". Nombre: " + nombres[i] + " | Hora: " + horas[i] + "| Servicio: " + servicio);
+
+            }
+
+        }
+
+    }
+
+    public static void cancelar(Scanner sc){
+        
+        if (cantReservas == 0) {
+            System.out.println("---------------------------------");
+            System.out.println("Aún no hay reservas para cancelar");
+            System.out.println("---------------------------------");
+
+        }else{
+            System.out.println("Ingrese la reserva a eliminar: ");
+            int reserva = sc.nextInt();
+            sc.nextLine();
+        }
+    }
 
 }
-
-

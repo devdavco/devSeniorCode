@@ -16,6 +16,6 @@ public class Menu {
 
         int opcion = sc.nextInt();
         sc.nextLine();
-        return opcion; //Validador.leerEntero(sc, "Elige una opcion: ");
+        return opcion; 
     }
 }

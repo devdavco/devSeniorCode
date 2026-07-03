@@ -16,26 +16,17 @@ public class App {
             
             switch (opcion) {
                 case 1:
-                    //Operaciones.registrar(sc);
-                    System.out.println(opcion);
-
-                    // horaValida =  Validador.horaValida(5);
-                    // nombreValido =  Validador.nombreValido("   Juan ");
-                    // servicioValido = Validador.servicioValido(5);
-                    // System.out.println("Hora: " + horaValida);
-                    // System.out.println("Nombre: " + nombreValido);
-                    // System.out.println("Servicio: " + servicioValido);
-
+                
                     Operaciones.agendar(sc);
 
                     break;
                 case 2:
-                    System.out.println(opcion);
-                    //Operaciones.listar();
+                    // System.out.println(opcion);
+                    Operaciones.listar();
                     break;
                 case 3:
-                    System.out.println(opcion);
-                    //Operaciones.actualizarCantidad(sc);
+
+                    Operaciones.cancelar(sc);
                     break;
                 case 4:
                     System.out.println(opcion);
