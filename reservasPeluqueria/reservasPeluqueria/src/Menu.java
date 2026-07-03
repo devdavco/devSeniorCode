@@ -13,6 +13,9 @@ public class Menu {
     }
 
     public static int leerOpcion(Scanner sc) {
-        return sc.nextInt(); //Validador.leerEntero(sc, "Elige una opcion: ");
+
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        return opcion; //Validador.leerEntero(sc, "Elige una opcion: ");
     }
 }

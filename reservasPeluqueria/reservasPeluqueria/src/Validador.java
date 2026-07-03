@@ -10,7 +10,7 @@ public class Validador {
 
         } else {
 
-            System.out.println("Hora no disponible - Fuera de servicio");
+            System.out.println("Hora no disponible - Fuera de servicio (8 - 17)");
             return false;
         }
 
@@ -20,7 +20,7 @@ public class Validador {
 
         // {DUDA} ¿Cómo así que no quede vacío al quitar espacios?
 
-        if (!nombre.trim().isBlank() && nombre != null) {
+        if (nombre != null && !nombre.trim().isBlank()) {
 
             return true;
 
