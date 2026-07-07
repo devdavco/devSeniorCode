@@ -2,12 +2,13 @@ import java.util.Scanner;
 
 public class Operaciones {
 
-    static final int MAX = 5;
+    static final int MAX = 2;
 
     static int cantReservas = 0;
     static String[] nombres = new String[MAX];
     static int[] horas = new int[MAX];
     static int[] servicios = new int[MAX];
+    static int dineroAcumulado = 0;
     // static String[][] servicios = new String[][] {{"1","Corte de
     // Cabello","25000"},{"2","Tinte","60000"},{"3","Manicure","30000"}};
 
@@ -144,18 +145,20 @@ public class Operaciones {
 
     public static void cancelar(Scanner sc){
 
+        // Validamos que hayan reservas disponibles
         if (cantReservas == 0) {
             System.out.println("---------------------------------");
             System.out.println("Aún no hay reservas para cancelar");
             System.out.println("---------------------------------");
 
         }else{
+
             System.out.println("Ingrese la reserva a eliminar: ");
             int reserva = sc.nextInt();
             sc.nextLine();
-
+            // Valido que la reserva seleccionada exista
             if(reserva > 0 && reserva <= cantReservas ){
-
+                // Aquí inicia lo complejo porque: debo sustituir la reserva a cancelar por la que le sigue e ir haciéndolo con todas
                 for (int i = reserva; i <= cantReservas; i++) {
 
                     horas[i-1] = horas[i];
@@ -171,6 +174,23 @@ public class Operaciones {
                 System.out.println("Reserva no encontrada");
             }
 
+        }
+    }
+
+    public static void reporte(Scanner sc){
+        if (cantReservas == 0) {
+            System.out.println("NO HUBO CITAS");
+        }else{
+            System.out.println("CANTIDAD CITAS: "+cantReservas);
+            dineroAcumulado = 0;
+            for (int i = 0; i < cantReservas; i++) {
+                switch (servicios[i]) {
+                    case 1 -> dineroAcumulado = dineroAcumulado + 25000;
+                    case 2 -> dineroAcumulado = dineroAcumulado + 60000;
+                    case 3 -> dineroAcumulado = dineroAcumulado + 30000;
+                }
+            }
+            System.out.println("DINERO RECAUDADO: "+dineroAcumulado);
         }
     }
 
