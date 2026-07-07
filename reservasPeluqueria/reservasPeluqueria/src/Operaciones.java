@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Operaciones {
 
-    static final int MAX = 2;
+    static final int MAX = 5;
 
     static int cantReservas = 0;
     static String[] nombres = new String[MAX];
@@ -15,7 +15,7 @@ public class Operaciones {
 
         if (cantReservas < MAX) {
             System.out.println("Bienvenido al Agendamiento");
-            String nombre = "";
+            String nombre ;
 
             // Con Cupo
 
@@ -112,7 +112,6 @@ public class Operaciones {
             System.out.println("------------------------");
             System.out.println("No hay cupos disponibles");
             System.out.println("------------------------");
-            return;
         }
     }
 
@@ -135,7 +134,7 @@ public class Operaciones {
                 }
 
                 System.out.println(
-                        i + 1 + ". Nombre: " + nombres[i] + " | Hora: " + horas[i] + "| Servicio: " + servicio);
+                        i + 1 + ". Nombre: " + nombres[i] + " | Hora: " + horas[i] + "| Servicio: " + servicio );
 
             }
 
@@ -144,7 +143,7 @@ public class Operaciones {
     }
 
     public static void cancelar(Scanner sc){
-        
+
         if (cantReservas == 0) {
             System.out.println("---------------------------------");
             System.out.println("Aún no hay reservas para cancelar");
@@ -155,10 +154,23 @@ public class Operaciones {
             int reserva = sc.nextInt();
             sc.nextLine();
 
-            if(reserva <= cantReservas){
+            if(reserva > 0 && reserva <= cantReservas ){
+
+                for (int i = reserva; i <= cantReservas; i++) {
+
+                    horas[i-1] = horas[i];
+                    servicios[i-1] = servicios[i];
+                    nombres[i-1] = nombres[i];
+
+                }
+                cantReservas--;
 
 
+                  System.out.println("Reserva "+ reserva + " CANCELADA con éxito!");
+            }else{
+                System.out.println("Reserva no encontrada");
             }
+
         }
     }
 
