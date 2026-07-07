@@ -156,10 +156,11 @@ public class Operaciones {
             System.out.println("Ingrese la reserva a eliminar: ");
             int reserva = sc.nextInt();
             sc.nextLine();
+
             // Valido que la reserva seleccionada exista
             if(reserva > 0 && reserva <= cantReservas ){
                 // Aquí inicia lo complejo porque: debo sustituir la reserva a cancelar por la que le sigue e ir haciéndolo con todas
-                for (int i = reserva; i <= cantReservas; i++) {
+                for (int i = reserva; i < cantReservas; i++) {
 
                     horas[i-1] = horas[i];
                     servicios[i-1] = servicios[i];
