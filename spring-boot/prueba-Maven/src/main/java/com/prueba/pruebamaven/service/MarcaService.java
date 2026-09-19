@@ -4,7 +4,6 @@ package com.prueba.pruebamaven.service;
 import com.prueba.pruebamaven.model.Marca;
 import com.prueba.pruebamaven.repository.MarcaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package com.prueba.pruebamaven.controller;
 
 import com.prueba.pruebamaven.model.Producto;
+import com.prueba.pruebamaven.dto.ProductoDTO;
 import com.prueba.pruebamaven.service.ProductoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,20 +17,28 @@ public class ProductoController {
     }
 
     @GetMapping
-    public List<Producto> obtenerProductos() {
-        return productoService.listarProductos();
+    public List<ProductoDTO> obtenerProductos() {
+        return productoService.listarProductos()
+                .stream()
+                .map(ProductoDTO::new)
+                .toList();
     }
 
     @GetMapping("/categoria/{categoriaId}")
-    public List<Producto> obtenerPorCategoria(
+    public List<ProductoDTO> obtenerPorCategoria(
             @PathVariable Long categoriaId) {
-        return productoService.listarPorCategoria(categoriaId);
+        return productoService.listarPorCategoria(categoriaId)
+                .stream()
+                .map(ProductoDTO::new)
+                .toList();
     }
 
     @PostMapping
-    public Producto crearProducto(@RequestBody Producto producto) {
-        return productoService.agregarProducto(producto);
+    public ProductoDTO crearProducto(@RequestBody Producto producto) {
+        Producto guardado = productoService.agregarProducto(producto);
+        return new ProductoDTO(guardado);
     }
+
     @DeleteMapping("{id}")
     public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
         productoService.eliminarProducto(id);

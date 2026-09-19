@@ -1,5 +1,6 @@
 package com.prueba.pruebamaven.controller;
 
+import com.prueba.pruebamaven.dto.CategoriaDTO;
 import com.prueba.pruebamaven.model.Categoria;
 import com.prueba.pruebamaven.service.CategoriaService;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,11 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
     @GetMapping
-    public List<Categoria> obtenerCategorias() {
-        return categoriaService.listarCategorias();
+    public List<CategoriaDTO> obtenerCategorias() {
+        return categoriaService.listarCategorias()
+                .stream()
+                .map(CategoriaDTO::new)
+                .toList();
     }
 
     @PostMapping
