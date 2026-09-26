@@ -1,8 +1,13 @@
 package com.prueba.pruebamaven.controller;
 
+import com.prueba.pruebamaven.dto.ProductoRequest;
+import com.prueba.pruebamaven.model.Categoria;
+import com.prueba.pruebamaven.model.Marca;
 import com.prueba.pruebamaven.model.Producto;
 import com.prueba.pruebamaven.dto.ProductoDTO;
 import com.prueba.pruebamaven.service.ProductoService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -34,9 +39,16 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ProductoDTO crearProducto(@RequestBody Producto producto) {
-        Producto guardado = productoService.agregarProducto(producto);
-        return new ProductoDTO(guardado);
+    public ResponseEntity<ProductoDTO> crearProducto(@Valid @RequestBody ProductoRequest req){
+        Producto p = new Producto();
+        p.setNombre(req.getNombre());
+        p.setDescripcion(req.getDescripcion());
+        p.setPrecio(req.getPrecio());
+        p.setStock(req.getStock());
+        Categoria c = new Categoria(); c.setId(req.getCategoriaId()); p.setCategoria(c);
+        Marca m = new Marca(); m.setId(req.getMarcaId()); p.setMarca(m);
+        Producto guardado = productoService.agregarProducto(p);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ProductoDTO(guardado));
     }
 
     @DeleteMapping("{id}")

@@ -1,13 +1,9 @@
 package com.prueba.pruebamaven.controller;
 
-import com.prueba.pruebamaven.dto.AuthResponse;
-import com.prueba.pruebamaven.dto.LoginRequest;
-import com.prueba.pruebamaven.dto.RegistroRequest;
+import com.prueba.pruebamaven.dto.*;
 import com.prueba.pruebamaven.service.AuthService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -15,17 +11,15 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    public AuthController(AuthService s){ this.authService = s; }
 
     @PostMapping("/register")
-    public AuthResponse register(@RequestBody RegistroRequest request) {
-        return authService.registrar(request);
+    public AuthResponse register(@Valid @RequestBody RegistroRequest req){
+        return authService.registrar(req);
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody LoginRequest request) {
-        return authService.login(request);
+    public AuthResponse login(@RequestBody LoginRequest req){
+        return authService.login(req);
     }
 }
